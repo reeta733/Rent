@@ -6,21 +6,23 @@ import OwnerAdd from '../pages/owner/Add';
 import SeekerAdd from '../pages/seeker/Add';
 import SeekerList from '../pages/seeker/List';
 import Login from '../pages/Login';
-import ProtectedRoute from '../routes/ProtectedRoute'; 
+import Logout from '../pages/Logout';
+import ProtectedRoute from '../routes/ProtectedRoute';
 
 const AllRoutes = () => {
   return (
     <Routes>
-      {/* Define the login route explicitly */}
-      <Route path="/" element={<Login />} />
+
+      <Route path='/' element={<Login />} />
 
       {/* Protected routes should be wrapped properly */}
-      <Route path='' element={<ProtectedRoute />}>
+      <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/owner/list" element={<OwnerList />} />
         <Route path="/owner/add" element={<OwnerAdd />} />
         <Route path="/seeker/add" element={<SeekerAdd />} />
         <Route path="/seeker/list" element={<SeekerList />} />
+        <Route path='/logout' element={<Logout />} />
       </Route>
     </Routes>
   );

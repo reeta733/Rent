@@ -28,14 +28,14 @@ const Login = () => {
       axios.post(`${import.meta.env.VITE_API_URL}/ownerauth`, values)
         .then((response) => {
           if (response.data.success === true) {
-            if (localStorage.getItem("access-token")) {
-              localStorage.removeItem("access-token")
-              localStorage.removeItem('name')
-            }
+            // if (localStorage.getItem("access-token")) {
+            //   localStorage.removeItem("access-token")
+            //   localStorage.removeItem('name')
+            // }
 
             localStorage.setItem("owner-token", response.data.token);
             localStorage.setItem("owner-name", response.data.name);
-            navigate("/");
+            navigate("/owner/my-account");
           } else {
             if (response.data.errType === 1) {
               setErrMsg("This Email Id and Password is Incorrect!");
@@ -68,7 +68,7 @@ const Login = () => {
             </div>
             <div className="card-body">
               <form onSubmit={loginFrm.handleSubmit}>
-                {/* Email Input */}
+
                 <div className="mb-3">
                   <label htmlFor="email">Email</label>
                   <input
@@ -85,7 +85,7 @@ const Login = () => {
                   )}
                 </div>
 
-                {/* Password Input with Show/Hide Toggle */}
+
                 <div className="mb-3" style={{ position: "relative" }}>
                   <label htmlFor="password">Password</label>
                   <div style={{ position: "relative" }}>
@@ -98,7 +98,7 @@ const Login = () => {
                       onChange={loginFrm.handleChange}
                       onBlur={loginFrm.handleBlur}
                     />
-                    {/* Eye Icon for Toggling Password */}
+
                     <span
                       onClick={() => setShowPassword(!showPassword)}
                       style={{
@@ -117,7 +117,6 @@ const Login = () => {
                   )}
                 </div>
 
-                {/* Submit Button */}
                 <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
                   {loading ? <Spinner as="span" animation="border" size="sm" /> : ""} Login
                 </button>

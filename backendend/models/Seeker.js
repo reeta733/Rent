@@ -8,11 +8,8 @@ let SeekerSchema = mongoose.Schema(
     address: String,
     phone: String,
     gender: String,
-
-    propertyLocation: String,
     state: String,
     city: String,
-
     password: String,
   },
   { timestamps: true }

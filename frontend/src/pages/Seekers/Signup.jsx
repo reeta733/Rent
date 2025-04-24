@@ -42,11 +42,8 @@ const Signup = () => {
       phone: "",
       gender: "",
       address: "",
-
-      propertyLocation: "",
       state: "",
       city: "",
-
       password: "",
       repassword: "",
     },
@@ -98,7 +95,7 @@ const Signup = () => {
                 <div className="mb-3">
                   <label htmlFor="email">Email</label>
                   <input
-                    type="email"
+                    type="text"
                     id="email"
                     name="email"
                     className={`form-control ${signupFrm.errors.email && signupFrm.touched.email ? "is-invalid" : " "}`}
@@ -135,7 +132,7 @@ const Signup = () => {
                   <label>Gender</label>
                   <select
                     name="gender"
-                    className={`form-control ${signupFrm.errors.gender && signupFrm.touched.gender ? "is-invalid" : ""}`}
+                    className={`form-control ${signupFrm.errors.gender && signupFrm.touched.gender ? " is-invalid" : ""}`}
                     value={signupFrm.values.gender}
                     onChange={signupFrm.handleChange}
                     onBlur={signupFrm.handleBlur}
@@ -171,26 +168,7 @@ const Signup = () => {
                 </div>
 
 
-                <div className="mb-3">
-                  <label>Preferred Property Location</label>
-                  <select
-                    name="propertyLocation"
-                    className={`form-control ${signupFrm.errors.propertyLocation && signupFrm.touched.propertyLocation ? "is-invalid" : ""}`}
-                    value={signupFrm.values.propertyLocation}
-                    onChange={signupFrm.handleChange}
-                    onBlur={signupFrm.handleBlur}
-                  >
-                    <option value="">Select Location</option>
-                    {allLocation.map((loc, index) => (
-                      <option key={index} value={loc.name}>
-                        {loc.name}
-                      </option>
-                    ))}
-                  </select>
-                  {signupFrm.errors.propertyLocation && signupFrm.touched.propertyLocation && (
-                    <small className="text-danger">{signupFrm.errors.propertyLocation}</small>
-                  )}
-                </div>
+               
 
 
 

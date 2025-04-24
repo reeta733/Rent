@@ -35,7 +35,7 @@ const Login = () => {
             }
             localStorage.setItem("access-token", response.data.token);
             localStorage.setItem("name", response.data.name);
-            navigate("/");
+            navigate("/seeker/profile");
           } else {
             if (response.data.errType === 1) {
               setErrMsg("This Email Id and Password is Incorrect!");

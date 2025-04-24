@@ -8,7 +8,7 @@ let AdminAuth = async (req, res) => {
     let Password = sha1(password);
     let result = await Admin.find({ username: username });
 
-    console.log(result);
+    // console.log(result);
 
     if (result.length === 1) {
       if (result[0].password === Password) {
@@ -28,10 +28,10 @@ let AdminAuth = async (req, res) => {
         res.send({ success: false, message: "Invalid password", errType: 2 });
       }
     } else {
-      res.send({ success: false, message: "Owner not found", errType: 1 });
+      res.send({ success: false, message: "Admin  not found", errType: 1 });
     }
   } catch (error) {
-    console.error("Error in OwnerAuth:", error);
+    console.error("Error in AdminAuth:", error);
     res.status(500).send({ success: false, message: "Server error" });
   }
 };

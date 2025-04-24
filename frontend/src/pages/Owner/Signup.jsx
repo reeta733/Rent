@@ -22,21 +22,20 @@ const Signup = () => {
   }, []);
   let navigate = useNavigate();
   const signupFrm = useFormik({
+    validationSchema: ownerSchema,
     initialValues: {
       name: "",
       email: "",
       phone: "",
       address: "",
-
       state: "",
       city: "",
       password: "",
       repassword: ""
     },
-    validationSchema: ownerSchema,
+    // onSubmit:(formData)=>{console.log(formData);
+
     onSubmit: (formData) => {
-      // console.log(formData);
-      // return;
       axios.post(`${API_URL}/owner`, formData)
         .then((response) => {
           toast.success("Owner Registered Successfully", { onClose: () => navigate("/owner/login") });
@@ -46,7 +45,7 @@ const Signup = () => {
         .catch((error) => {
           console.error(error);
         });
-    },
+    }
   });
   let getAllCity = (e) => {
     let s = e.target.value;
@@ -79,8 +78,6 @@ const Signup = () => {
                     className={`form-control ${signupFrm.errors.name && signupFrm.touched.name ? 'is-invalid' : ''}`}
                     placeholder="Enter name"
                     onChange={signupFrm.handleChange}
-                    onBlur={signupFrm.handleBlur}
-                    value={signupFrm.values.name}
                   />
                   {signupFrm.errors.name && signupFrm.touched.name && (
                     <small className='text-danger'>{signupFrm.errors.name}</small>
@@ -91,14 +88,11 @@ const Signup = () => {
                   <label htmlFor="email">Email</label>
                   <input
                     name="email"
-                    type="email"
+                    type="text"
                     id="email"
                     className={`form-control ${signupFrm.errors.email && signupFrm.touched.email ? 'is-invalid' : ''}`}
                     placeholder="Enter email"
                     onChange={signupFrm.handleChange}
-                    onBlur={signupFrm.handleBlur}
-                    value={signupFrm.values.email}
-                    autoComplete="username"
                   />
                   {signupFrm.errors.email && signupFrm.touched.email && (
                     <small className='text-danger'>{signupFrm.errors.email}</small>
@@ -114,8 +108,6 @@ const Signup = () => {
                     className={`form-control ${signupFrm.errors.phone && signupFrm.touched.phone ? 'is-invalid' : ''}`}
                     placeholder="Enter number"
                     onChange={signupFrm.handleChange}
-                    onBlur={signupFrm.handleBlur}
-                    value={signupFrm.values.phone}
                   />
                   {signupFrm.errors.phone && signupFrm.touched.phone && (
                     <small className='text-danger'>{signupFrm.errors.phone}</small>
@@ -131,8 +123,8 @@ const Signup = () => {
                     className={`form-control ${signupFrm.errors.address && signupFrm.touched.address ? 'is-invalid' : ''}`}
                     placeholder="Enter address"
                     onChange={signupFrm.handleChange}
-                    onBlur={signupFrm.handleBlur}
-                    value={signupFrm.values.address}
+
+                  // value={signupFrm.values.address}
                   />
                   {signupFrm.errors.address && signupFrm.touched.address && (
                     <small className='text-danger'>{signupFrm.errors.address}</small>
@@ -145,8 +137,6 @@ const Signup = () => {
                     className={`form-control ${signupFrm.errors.city && signupFrm.touched.city ? "is-invalid" : ""
                       }`}
                     onChange={signupFrm.handleChange}
-                    onBlur={signupFrm.handleBlur}
-                    value={signupFrm.values.city}
                   >
                     <option value="" disabled>Select City</option>
                     {allCity.map((item, index) => (
@@ -170,8 +160,6 @@ const Signup = () => {
                       getAllCity(e);
                       signupFrm.handleChange(e);
                     }}
-                    onBlur={signupFrm.handleBlur}
-                    value={signupFrm.values.state}
                   >
                     <option value="">Select State</option> {/* Default option */}
                     {allState.map((item, index) => (
@@ -194,9 +182,7 @@ const Signup = () => {
                     className={`form-control ${signupFrm.errors.password && signupFrm.touched.password ? 'is-invalid' : ''}`}
                     placeholder="Enter password"
                     onChange={signupFrm.handleChange}
-                    onBlur={signupFrm.handleBlur}
-                    value={signupFrm.values.password}
-                    autoComplete="new-password"
+
                   />
                   {signupFrm.errors.password && signupFrm.touched.password && (
                     <small className='text-danger'>{signupFrm.errors.password}</small>
@@ -212,16 +198,14 @@ const Signup = () => {
                     className={`form-control ${signupFrm.errors.repassword && signupFrm.touched.repassword ? 'is-invalid' : ''}`}
                     placeholder="Enter repassword"
                     onChange={signupFrm.handleChange}
-                    onBlur={signupFrm.handleBlur}
-                    value={signupFrm.values.repassword}
-                    autoComplete="new-password"
+
                   />
                   {signupFrm.errors.repassword && signupFrm.touched.repassword && (
                     <small className='text-danger'>{signupFrm.errors.repassword}</small>
                   )}
                 </div>
 
-                <button type="submit" value="Signup" className="btn btn-primary btn-block">
+                <button type="submit" className="btn btn-primary btn-block">
                   Sign Up
                 </button>
               </div>

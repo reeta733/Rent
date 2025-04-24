@@ -17,7 +17,7 @@ const Details = () => {
                   src='assets/images/img_7.jpg' 
                   className='img-fluid' 
                   alt='Property' 
-                  style={{ width: '100%', height: '250px', objectFit: 'cover' }} 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                 />
               </div>
               <div className='col-md-7'>
