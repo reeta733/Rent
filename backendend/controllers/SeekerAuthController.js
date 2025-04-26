@@ -17,29 +17,24 @@ let SeekerAuth = async (req, res) => {
     if (result.length === 1) {
       if (result[0].password === Password) {
         // Create a token
-        {
-          let obj = { id: result[0]._id, email: result[0].email };
-          let token = jwt.sign(obj, process.env.ENC_KEY);
+        let obj = { id: result[0]._id, email: result[0].email };
+        let token = jwt.sign(obj, process.env.ENC_KEY);
 
-          res.send({
-            success: true,
-            message: "Login successful",
-            token: token,
-            name: result[0].name,
-          });
-        }
-
-        res.send({ success: true, message: "Login successful" 
+        return res.send({
+          success: true,
+          message: "Login successful",
+          token: token,
+          name: result[0].name,
         });
       } else {
-        res.send({ success: false, message: "Invalid password", errType: 2 });
+        return res.send({ success: false, message: "Invalid password", errType: 2 });
       }
     } else {
-      res.send({ success: false, message: "Seeker not found", errType: 1 });
+      return res.send({ success: false, message: "Seeker not found", errType: 1 });
     }
   } catch (error) {
     console.error("Error in SeekerAuth:", error);
-    res.status(500).send({ success: false, message: "Server error" });
+    return res.status(500).send({ success: false, message: "Server error" });
   }
 };
 
