@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { Spinner } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+
 const Login = () => {
   let navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -27,6 +28,7 @@ const Login = () => {
       setLoading(true);
       axios.post(`${import.meta.env.VITE_API_URL}/ownerauth`, values)
         .then((response) => {
+          console.log(response.data)
           if (response.data.success === true) {
             // if (localStorage.getItem("access-token")) {
             //   localStorage.removeItem("access-token")
