@@ -5,8 +5,8 @@ import { Outlet,useNavigate } from 'react-router-dom';
 const OwnerProtectedRoute = () => {
     let navigate = useNavigate();
     useEffect(() => {
-        if (!localStorage.getItem("owner-access-token")) {
-            navigate("/owner/my-account")
+        if (!localStorage.getItem("owner-token")) {
+            navigate("/owner/login")
         }
     }, [])
     return (

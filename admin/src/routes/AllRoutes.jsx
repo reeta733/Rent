@@ -8,6 +8,7 @@ import SeekerList from '../pages/seeker/List';
 import Login from '../pages/Login';
 import Logout from '../pages/Logout';
 import ProtectedRoute from '../routes/ProtectedRoute';
+import ViewProperty from '../pages/owner/ViewProperty';
 
 const AllRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const AllRoutes = () => {
       <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/owner/list" element={<OwnerList />} />
+        <Route path='/view-property/:id' element={<ViewProperty />} />
         <Route path="/owner/add" element={<OwnerAdd />} />
         <Route path="/seeker/add" element={<SeekerAdd />} />
         <Route path="/seeker/list" element={<SeekerList />} />

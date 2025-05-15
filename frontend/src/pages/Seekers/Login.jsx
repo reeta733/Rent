@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { Spinner } from "react-bootstrap";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import Slider from '../../component/Slider';
 
 const Login = () => {
   let navigate = useNavigate();
@@ -56,6 +57,8 @@ const Login = () => {
   });
 
   return (
+    <>
+    <Slider data={<h1 className="text-white">Login Here</h1>} />
     <div className="container" style={{ marginBottom: "100px", marginTop: "100px" }}>
       <div className="row">
         <div className="col-md-6 offset-md-3">
@@ -113,7 +116,7 @@ const Login = () => {
                   )}
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+                <button type="submit" className="btn btn-custom text-white btn-block" disabled={loading}>
                   {loading ? <Spinner as="span" animation="border" size="sm" /> : ""} Login
                 </button>
 
@@ -128,6 +131,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -6,6 +6,7 @@ import axios from "axios";
 import { API_URL } from "../../constant/API_URL";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import Slider from "../../component/Slider";
 const Signup = () => {
   let [allState, setAllState] = useState([]);
   let [allCity, setAllCity] = useState([]);
@@ -58,7 +59,8 @@ const Signup = () => {
 
 
   return (
-
+<>
+   <Slider data={<h1 className="text-white"> Sing up Here</h1>} />
     <div className="container" style={{ marginBottom: "100px", marginTop: "100px" }}>
       <ToastContainer />
       <form onSubmit={signupFrm.handleSubmit}>
@@ -205,7 +207,7 @@ const Signup = () => {
                   )}
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block">
+                <button type="submit" className="btn btn-custom text-white btn-block">
                   Sign Up
                 </button>
               </div>
@@ -214,6 +216,7 @@ const Signup = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 

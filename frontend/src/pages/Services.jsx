@@ -1,192 +1,237 @@
-import React from 'react'
+import Slider from "../component/Slider";
+import React from "react";
+import SliderReact from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Services = () => {
+  const testimonials = [
+    {
+      name: "James Smith",
+      image: "/assets/images/person_1-min.jpg",
+      text: `Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...`,
+      position: "Designer, Co-founder",
+    },
+    {
+      name: "Mike Houston",
+      image: "/assets/images/person_2-min.jpg",
+      text: `Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...`,
+      position: "Designer, Co-founder",
+    },
+    {
+      name: "Cameron Webster",
+      image: "/assets/images/person_3-min.jpg",
+      text: `Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...`,
+      position: "Designer, Co-founder",
+    },
+  ];
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2500,
+    autoplaySpeed: 2500,
+    cssEase: "linear"
+    // arrows: true,
+    // prevArrow: <button className="prev">Prev</button>,
+    // nextArrow: <button className="next">Next</button>,
+  };
+
   return (
     <>
-
-      <section className="features-1">
-        <div className="container">
-          <div className="row">
-            <div className="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-              <div className="box-feature">
-                <span className="flaticon-house"></span>
-                <h3 className="mb-3">Our Properties</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptates, accusamus.
-                </p>
-                <p><a href="#" className="learn-more">Learn More</a></p>
-              </div>
-            </div>
-            <div className="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
-              <div className="box-feature">
-                <span className="flaticon-building"></span>
-                <h3 className="mb-3">Property for Sale</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptates, accusamus.
-                </p>
-                <p><a href="#" className="learn-more">Learn More</a></p>
-              </div>
-            </div>
-            <div className="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-              <div className="box-feature">
-                <span className="flaticon-house-3"></span>
-                <h3 className="mb-3">Real Estate Agent</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptates, accusamus.
-                </p>
-                <p><a href="#" className="learn-more">Learn More</a></p>
-              </div>
-            </div>
-            <div className="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="600">
-              <div className="box-feature">
-                <span className="flaticon-house-1"></span>
-                <h3 className="mb-3">House for Sale</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptates, accusamus.
-                </p>
-                <p><a href="#" className="learn-more">Learn More</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-      <div className="section section-4 bg-light">
-        <div className="container">
-          <div className="row justify-content-center text-center mb-5">
-            <div className="col-lg-5">
-              <h2 className="font-weight-bold heading text-primary mb-4">
-                Let's find home that's perfect for you
-              </h2>
+      <Slider data={<h1 className="text-white">Services</h1>} />
+      <div className="container">
+        <div className="row">
+          <div className="col-6 col-lg-3">
+            <div className="box-feature mb-4">
+              <span className="flaticon-house mb-4 d-block"></span>
+              <h3 className="text-black mb-3 font-weight-bold">
+                Quality Properties
+              </h3>
               <p className="text-black-50">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-                enim pariatur similique debitis vel nisi qui reprehenderit.
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+              </p>
+              <p>
+                <a href="#" className="learn-more">
+                  Read more
+                </a>
               </p>
             </div>
           </div>
-          <div className="row justify-content-between mb-5">
-            <div className="col-lg-7 mb-5 mb-lg-0 order-lg-2">
-              <div className="img-about dots">
-                <img src="/assets/images/hero_bg_3.jpg" alt="Image" className="img-fluid" />
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="d-flex feature-h">
-                <span className="wrap-icon me-3">
-                  <span className="icon-home2"></span>
-                </span>
-                <div className="feature-text">
-                  <h3 className="heading">2M Properties</h3>
-                  <p className="text-black-50">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nostrum iste.
-                  </p>
-                </div>
-              </div>
-
-              <div className="d-flex feature-h">
-                <span className="wrap-icon me-3">
-                  <span className="icon-person"></span>
-                </span>
-                <div className="feature-text">
-                  <h3 className="heading">Top Rated Agents</h3>
-                  <p className="text-black-50">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nostrum iste.
-                  </p>
-                </div>
-              </div>
-
-              <div className="d-flex feature-h">
-                <span className="wrap-icon me-3">
-                  <span className="icon-security"></span>
-                </span>
-                <div className="feature-text">
-                  <h3 className="heading">Legit Properties</h3>
-                  <p className="text-black-50">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nostrum iste.
-                  </p>
-                </div>
-              </div>
+          <div className="col-6 col-lg-3">
+            <div className="box-feature mb-4">
+              <span className="flaticon-house-2 mb-4 d-block-3"></span>
+              <h3 className="text-black mb-3 font-weight-bold">
+                Top Rated Agent
+              </h3>
+              <p className="text-black-50">
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+              </p>
+              <p>
+                <a href="#" className="learn-more">
+                  Read more
+                </a>
+              </p>
             </div>
           </div>
-          <div className="row section-counter mt-5">
-            <div
-              className="col-6 col-sm-6 col-md-6 col-lg-3"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <div className="counter-wrap mb-5 mb-lg-0">
-                <span className="number"
-                ><span className="countup text-primary">3298</span></span
-                >
-                <span className="caption text-black-50"># of Buy Properties</span>
-              </div>
+          <div className="col-6 col-lg-3">
+            <div className="box-feature mb-4">
+              <span className="flaticon-building mb-4 d-block"></span>
+              <h3 className="text-black mb-3 font-weight-bold">
+                Property for Sale
+              </h3>
+              <p className="text-black-50">
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+              </p>
+              <p>
+                <a href="#" className="learn-more">
+                  Read more
+                </a>
+              </p>
             </div>
-            <div
-              className="col-6 col-sm-6 col-md-6 col-lg-3"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              <div className="counter-wrap mb-5 mb-lg-0">
-                <span className="number"
-                ><span className="countup text-primary">2181</span></span
-                >
-                <span className="caption text-black-50"># of Sell Properties</span>
-              </div>
+          </div>
+          <div className="col-6 col-lg-3">
+            <div className="box-feature mb-4">
+              <span className="flaticon-house-3 mb-4 d-block-1"></span>
+              <h3 className="text-black mb-3 font-weight-bold">
+                House for Sale
+              </h3>
+              <p className="text-black-50">
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+              </p>
+              <p>
+                <a href="#" className="learn-more">
+                  Read more
+                </a>
+              </p>
             </div>
-            <div
-              className="col-6 col-sm-6 col-md-6 col-lg-3"
-              data-aos="fade-up"
-              data-aos-delay="500"
-            >
-              <div className="counter-wrap mb-5 mb-lg-0">
-                <span className="number"
-                ><span className="countup text-primary">9316</span></span
-                >
-                <span className="caption text-black-50"># of All Properties</span>
-              </div>
+          </div>
+
+          <div className="col-6 col-lg-3">
+            <div className="box-feature mb-4">
+              <span className="flaticon-house-4 mb-4 d-block"></span>
+              <h3 className="text-black mb-3 font-weight-bold">
+                Quality Properties
+              </h3>
+              <p className="text-black-50">
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+              </p>
+              <p>
+                <a href="#" className="learn-more">
+                  Read more
+                </a>
+              </p>
             </div>
-            <div
-              className="col-6 col-sm-6 col-md-6 col-lg-3"
-              data-aos="fade-up"
-              data-aos-delay="600"
-            >
-              <div className="counter-wrap mb-5 mb-lg-0">
-                <span className="number"
-                ><span className="countup text-primary">7191</span></span
-                >
-                <span className="caption text-black-50"># of Agents</span>
-              </div>
+          </div>
+          <div className="col-6 col-lg-3">
+            <div className="box-feature mb-4">
+              <span className="flaticon-building mb-4 d-block-3"></span>
+              <h3 className="text-black mb-3 font-weight-bold">
+                Top Rated Agent
+              </h3>
+              <p className="text-black-50">
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+              </p>
+              <p>
+                <a href="#" className="learn-more">
+                  Read more
+                </a>
+              </p>
+            </div>
+          </div>
+          <div className="col-6 col-lg-3">
+            <div className="box-feature mb-4">
+              <span className="flaticon-house mb-4 d-block"></span>
+              <h3 className="text-black mb-3 font-weight-bold">
+                Property for Sale
+              </h3>
+              <p className="text-black-50">
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+              </p>
+              <p>
+                <a href="#" className="learn-more">
+                  Read more
+                </a>
+              </p>
+            </div>
+          </div>
+          <div className="col-6 col-lg-3">
+            <div className="box-feature mb-4">
+              <span className="flaticon-house-1 mb-4 d-block-1"></span>
+              <h3 className="text-black mb-3 font-weight-bold">
+                House for Sale
+              </h3>
+              <p className="text-black-50">
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+              </p>
+              <p>
+                <a href="#" className="learn-more">
+                  Read more
+                </a>
+              </p>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="section">
-        <div className="row justify-content-center footer-cta" data-aos="fade-up">
-          <div className="col-lg-7 mx-auto text-center">
-            <h2 className="mb-4">Be a part of our growing real state agents</h2>
-            <p>
-              <a
-                href="#"
-                target="_blank"
-                className="btn btn-primary text-white py-3 px-4"
-              >Apply for Real Estate agent</a
-              >
-            </p>
+      <div className="container">
+        <div className="row mb-5 align-items-center">
+          <div className="col-md-6">
+            <h2 className="font-weight-bold heading text-primary mb-4 mb-md-0">
+              Customer Says
+            </h2>
+          </div>
+          <div className="col-md-6 text-md-end">
+            <div id="testimonial-nav">
+              {/* Custom arrows handled by react-slick settings */}
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="row">
+              <div className="col-md-12">
+            <SliderReact {...settings}>
+              {testimonials.map((testimonial, index) => (
+                  <div className="item" key={index}>
+                    <div className="testimonial">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        style={{width: "100px"}}
+                        className="img-fluid rounded-circle mb-4"
+                      />
+                      <div className="rate mb-2">
+                        {[...Array(5)].map((t, i) => (
+                          <span key={i} className="icon-star me-1 text-warning">
+                          </span>
+                        ))}
+                      </div>
+                      <h3 className="h5 text-primary mb-4">
+                        {testimonial.name}
+                      </h3>
+                      <blockquote>
+                        <p className="w-100">&ldquo;{testimonial.text}&rdquo;</p>
+                      </blockquote>
+                      <p className="text-black-50">{testimonial.position}</p>
+                    </div>
+                  </div>
+              ))}
+            </SliderReact>
+              </div>
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Services
+export default Services;

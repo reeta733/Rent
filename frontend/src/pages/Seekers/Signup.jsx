@@ -6,6 +6,7 @@ import axios from "axios"; // Corrected import
 import seekerSchema from "../../schema/SeekerSignupSchema";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../constant/API_URL";
+import Slider from "../../component/Slider";
 
 const Signup = () => {
   let [allState, setAllState] = useState([]);
@@ -64,6 +65,8 @@ const Signup = () => {
 
 
   return (
+    <>
+       <Slider data={<h1 className="text-white"> Sing up Here</h1>} />
     <div className="container" style={{ marginBottom: "100px", marginTop: "100px" }}>
       <ToastContainer />
       <div className="row">
@@ -255,7 +258,7 @@ const Signup = () => {
                   )}
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block">
+                <button type="submit" className="btn btn-custom text-light btn-block">
                   Sign Up
                 </button>
               </form>
@@ -264,6 +267,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
