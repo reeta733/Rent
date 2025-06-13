@@ -51,6 +51,16 @@ const HeaderNew = () => {
                 Home
               </NavLink>
             </li>
+             <li className="nav-item">
+              <NavLink className="nav-link px-4" to="/services">
+                Services
+              </NavLink>
+            </li>
+             <li className="nav-item">
+              <NavLink className="nav-link px-4" to="/about">
+                About
+              </NavLink>
+            </li>
 
             {/* Owner Navigation */}
             <li className='nav-item dropdown menu-bg-wrap"'>

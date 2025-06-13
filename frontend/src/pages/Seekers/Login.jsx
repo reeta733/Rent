@@ -34,8 +34,11 @@ const Login = () => {
               localStorage.removeItem("owner-token")
               localStorage.removeItem('owner-name')
             }
+            // console.log(response.data);return
+            
             localStorage.setItem("access-token", response.data.token);
             localStorage.setItem("name", response.data.name);
+            localStorage.setItem("seeker_id", response.data.sid);
             navigate("/seeker/profile");
           } else {
             if (response.data.errType === 1) {
@@ -123,7 +126,7 @@ const Login = () => {
                 {errMsg && <p className="text-danger mt-2">{errMsg}</p>}
 
                 <p className="forgot-password text-right mt-2">
-                  Forgot <NavLink to="/forgot-password">password?</NavLink>
+                  Forgot <NavLink to="/seeker/forgot-password">password?</NavLink>
                 </p>
               </form>
             </div>

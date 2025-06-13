@@ -207,7 +207,7 @@ const Signup = () => {
                   )}
                 </div>
 
-                <button type="submit" className="btn btn-custom text-white btn-block">
+                <button type="submit" className="btn btn-custom text-white btn-block rounded-5">
                   Sign Up
                 </button>
               </div>

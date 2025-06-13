@@ -19,8 +19,10 @@ const createContact = async (req, res) => {
 // READ ALL
 const getContacts = async (req, res) => {
   try {
-    const contacts = await Contact.find().sort({ createdAt: -1 });
-    res.json(contacts);
+    const contacts = await Contact.find().populate('pid').exec();
+    // const contacts = await Contact.find().sort({ createdAt: -1 });
+    res.send(contacts);
+    console.log(contacts);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch contacts" });
   }
@@ -29,9 +31,8 @@ const getContacts = async (req, res) => {
 // READ ONE
 const getContactById = async (req, res) => {
   try {
-    const contact = await Contact.findById(req.params.id);
-    if (!contact) return res.status(404).json({ error: "Contact not found" });
-    res.json(contact);
+    const contacts = await Contact.find().populate('pid').exec() 
+    res.send(contacts)
   } catch (error) {
     res.status(500).json({ error: "Failed to get contact" });
   }
@@ -64,7 +65,7 @@ const deleteContact = async (req, res) => {
 export {
   createContact,
   getContacts,
-  getContactById,
+  // getContactById,
   updateContact,
   deleteContact,
 };

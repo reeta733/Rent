@@ -4,6 +4,9 @@ import { NavLink } from "react-router-dom";
 import "./Home.css";
 import PropertyProp from "../component/PropertyProp";
 import Slider from "../component/Slider";
+import TestimonialCarousel from "../component/TestimonialCarousel";
+import RealEstateAgent from "../component/RealEstateAgent";
+import Agent from "../component/Agent";
 
 const Home = () => {
   const [allProperty, setAllProperty] = useState([]);
@@ -12,7 +15,6 @@ const Home = () => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/property`)
       .then((result) => {
-        console.log("API Data:", result.data);
         setAllProperty(result.data);
       })
       .catch((err) => {
@@ -23,6 +25,7 @@ const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <>
       <Slider data={<h1 className="text-white">Home</h1>} />
@@ -34,33 +37,92 @@ const Home = () => {
               <h2 className="fw-bold main-color">Popular Properties</h2>
             </div>
             <div className="col-lg-6 text-center text-lg-end">
-              <NavLink to="#" className="btn btn-custom text-light rounded-5 py-3 px-4 ms-2 btn-hover">
+              <NavLink
+                to="#"
+                className="btn btn-custom text-light rounded-5 py-3 px-4 ms-2 btn-hover"
+              >
                 View all properties
               </NavLink>
             </div>
           </div>
 
           <div className="row">
+            {console.log(allProperty)}
             {allProperty.map((item, index) => (
-              <PropertyProp item={item} index={index} />
+              <PropertyProp item={item} index={index} key={item._id || index} />
             ))}
           </div>
-
-          {/* <div
-          id="property-nav"
-          className="controls mt-5 d-flex justify-content-center gap-3"
-          tabIndex="0"
-          aria-label="Carousel Navigation"
-        >
-          <span className="btn btn-custom" tabIndex="-1">
-            Prev
-          </span>
-          <span className="btn btn-custom" tabIndex="-1">
-            Next
-          </span>
-        </div> */}
         </div>
       </div>
+      <section className="features-1">
+        <div className="container">
+          <div className="row">
+            <div className="col-6 col-lg-3">
+              <div className="box-feature">
+                <span className="flaticon-house"></span>
+                <h3 className="mb-3">Our Properties</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Voluptates, accusamus.
+                </p>
+                <p>
+                  <a href="#" className="learn-more">
+                    Learn More
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className="col-6 col-lg-3">
+              <div className="box-feature">
+                <span className="flaticon-building"></span>
+                <h3 className="mb-3">Property for Sale</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Voluptates, accusamus.
+                </p>
+                <p>
+                  <a href="#" className="learn-more">
+                    Learn More
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className="col-6 col-lg-3">
+              <div className="box-feature">
+                <span className="flaticon-house-3"></span>
+                <h3 className="mb-3">Real Estate Agent</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Voluptates, accusamus.
+                </p>
+                <p>
+                  <a href="#" className="learn-more">
+                    Learn More
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className="col-6 col-lg-3">
+              <div className="box-feature">
+                <span className="flaticon-house-1"></span>
+                <h3 className="mb-3">House for Sale</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Voluptates, accusamus.
+                </p>
+                <p>
+                  <a href="#" className="learn-more">
+                    Learn More
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <TestimonialCarousel />
+      <RealEstateAgent />
+      <Agent />
     </>
   );
 };

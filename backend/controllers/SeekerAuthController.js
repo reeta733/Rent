@@ -25,6 +25,7 @@ let SeekerAuth = async (req, res) => {
           message: "Login successful",
           token: token,
           name: result[0].name,
+          sid: result[0]._id
         });
       } else {
         return res.send({ success: false, message: "Invalid password", errType: 2 });

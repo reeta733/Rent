@@ -1,30 +1,71 @@
 import Prop from "../models/Property.js";
 import jwt from "jsonwebtoken";
+import path from "path";
 
 let SaveProperty = async (req, res) => {
-  if (req.headers.authorization) {
+  try {
+    let photo = req.files?.image;
+
+    if (!photo) {
+      return res
+        .status(400)
+        .send({ success: false, message: "Image file is required" });
+    }
+
+    req.body.image = photo.name;
+
+    if (!req.headers.authorization) {
+      return res
+        .status(401)
+        .send({ success: false, message: "No token provided" });
+    }
+
     let token = req.headers.authorization;
     let obj = jwt.decode(token, process.env.ENC_KEY);
 
+    if (!obj) {
+      return res.status(401).send({ success: false, message: "Invalid token" });
+    }
+
+    let id = obj.id;
+    req.body.owner_id = id;
+
+    // Clean up deposit field if it's an empty string
     if (req.body.deposit === " ") {
       delete req.body.deposit;
     }
 
+    // Parse amenities if it's a string
+    if (typeof req.body.amenities === "string") {
+      try {
+        req.body.amenities = JSON.parse(req.body.amenities);
+      } catch (err) {
+        return res
+          .status(400)
+          .send({ success: false, message: "Invalid amenities format" });
+      }
+    }
+
+    // Ensure amenities is at least an empty object
     if (!req.body.amenities || req.body.amenities === " ") {
       req.body.amenities = {};
     }
 
-    if (obj) {
-      let id = obj.id;
-      req.body.owner_id = id;
-      await Prop.create(req.body);
-      res.send({ success: true });
-      // console.log("Saved Property:", req.body);
-    } else {
-      res.status(401).send({ success: false, message: "Invalid token" });
-    }
-  } else {
-    res.status(401).send({ success: false, message: "No token provided" });
+    // Move image to upload directory
+    const uploadPath = path.join(
+      process.cwd(),
+      "assets",
+      "upload_images",
+      photo.name
+    );
+    await photo.mv(uploadPath);
+
+    // Create property
+    await Prop.create(req.body);
+    res.send({ success: true });
+  } catch (err) {
+    console.error("Error saving property:", err);
+    res.status(500).send({ success: false, message: "Server error" });
   }
 };
 
@@ -62,15 +103,12 @@ let getAllPropertyByID = async (req, res) => {
 };
 
 let getAllPropertyByOwnerAdmin = async (req, res) => {
-
-
   let ownerid = req.params.id;
   // console.log(ownerid);
 
   let result = await Prop.find({ owner_id: ownerid });
   res.send(result);
   // console.log(result[0]);
-  
 };
 
 export {

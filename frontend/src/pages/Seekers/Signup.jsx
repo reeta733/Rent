@@ -258,7 +258,7 @@ const Signup = () => {
                   )}
                 </div>
 
-                <button type="submit" className="btn btn-custom text-light btn-block">
+                <button type="submit" className="btn btn-custom text-light btn-block rounded-5">
                   Sign Up
                 </button>
               </form>

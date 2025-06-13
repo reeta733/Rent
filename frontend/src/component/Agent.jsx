@@ -6,7 +6,7 @@ const Agent = () => {
     <div className="container">
       <div className="row justify-content-center text-center mb-5">
         <div className="col-lg-6 mb-5">
-          <h2 className="font-weight-bold heading text-primary mb-4">
+          <h2 className="font-weight-bold heading mb-4">
             Our Agents
           </h2>
           <p className="text-black-50">

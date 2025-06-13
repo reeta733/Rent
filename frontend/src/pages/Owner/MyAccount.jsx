@@ -16,7 +16,7 @@ const MyAccount = () => {
       })
       .then((response) => {
         setOwner(response.data.result[0]);
-        console.log(response.data.result[0])
+        // console.log(response.data.result[0])
       })
       .catch((error) => {
         console.error("Error fetching data:", error);

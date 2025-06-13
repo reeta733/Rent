@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import DetailsModal from "../component/DetailsModal";
-import { useNavigate } from "react-router-dom";
 import Slider from "../component/Slider";
+// import seekerSchema from "../schema/SeekerSignupSchema";
 
 const Details = () => {
   const navigate = useNavigate();
@@ -13,8 +13,8 @@ const Details = () => {
   const [ownerName, setOwnerName] = useState("");
   const [ownerNum, setOwnerNum] = useState("");
   const [email, setEmail] = useState("");
+  const [advance_money, setAdvance_money] = useState("");
   const [show, setShow] = useState(false);
-
   const [popUpInfo, setPopUpInfo] = useState({});
 
   useEffect(() => {
@@ -29,16 +29,91 @@ const Details = () => {
         ? setPopUpInfo({
             show: false,
             title: "Click 'Contact' to contact owner ",
-            nav: "/contact/",
+            nav: "/contact",
           })
         : setPopUpInfo({
             show: false,
             title: "Message",
-            msg: "You are not logged in to see property owner details",
-            nav: "/owner/login",
+            msg: "You are not logged in to see property owner details, select appropriate login option for you",
+            nav: { seekerLogin: "/seeker/login", ownerLogin: "/owner/login" },
           });
     }
   }, []);
+
+  const handlePayment = async () => {
+    try {
+      // 1. Call backend to create order
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/razorpay/create-order`,
+        {
+          amount: advance_money,
+          property_id: property._id,
+          owner_id: property.owner_id._id,
+          seeker_id: localStorage.getItem("seeker_id"),
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("access-token"),
+          },
+        }
+      );
+
+      if (!data.success || !data.order) {
+        alert("Failed to create payment order.");
+        
+      }
+
+      const { order } = data;
+
+      // 2. Set Razorpay options
+      const options = {
+        key: "rzp_test_izSpzuQAJtYG6G", // Razorpay Key ID
+        amount: order.amount, // amount in paise
+        currency: "INR",
+        name: "RentEase",
+        description: "Advance Booking Payment",
+        order_id: order.id,
+        // handler: async function (response) {
+        //   try {
+        //     // 3. Verify payment on backend
+        //     const verifyRes = await axios.post(
+        //       `${import.meta.env.VITE_API_URL}/razorpay/verify-payment`,
+        //       {
+        //         razorpay_order_id: response.razorpay_order_id,
+        //         razorpay_payment_id: response.razorpay_payment_id,
+        //         razorpay_signature: response.razorpay_signature,
+        //       },
+        //       {
+        //         headers: {
+        //           Authorization: localStorage.getItem("access-token"),
+        //         },
+        //       }
+        //     );
+
+        //     if (verifyRes.data.success) {
+        //       alert(" Payment successful and verified!");
+        //       // You can redirect or update UI here
+        //     } else {
+        //       alert(" Payment verification failed.");
+        //     }
+        //   } catch (err) {
+        //     console.error("Error during payment verification:", err);
+        //     alert("Verification failed due to server error.");
+        //   }
+        // },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      // 4. Open Razorpay popup
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      console.error("Error initiating payment:", err);
+      alert("Failed to initiate payment.");
+    }
+  };
 
   useEffect(() => {
     axios
@@ -46,14 +121,20 @@ const Details = () => {
       .then((result) => {
         const propertyData = result.data[0];
         setProperty(propertyData);
-        console.log(propertyData);
 
         // Set owner details
         if (propertyData.owner_id) {
           setOwnerName(propertyData.owner_id.name || "---");
           setOwnerNum(propertyData.owner_id.phone || "000");
           setEmail(propertyData.owner_id.email || "---");
-          setPopUpInfo((curr)=>{ return {...curr, nav : "/contact/"+propertyData._id+"/"+propertyData.owner_id._id}})
+          setAdvance_money(propertyData.advance_money || "---");
+          localStorage.getItem("owner-token") ||
+          localStorage.getItem("access-token")
+            ? setPopUpInfo((curr) => ({
+                ...curr,
+                nav: "/contact/" + propertyData._id,
+              }))
+            : null;
         }
 
         setLoading(false);
@@ -63,35 +144,10 @@ const Details = () => {
         setLoading(false);
       });
   }, [id]);
-useEffect(() => {
-    {
-      localStorage.getItem("owner-token")
-        ? setPopUpInfo({
-            show: false,
-            title: "Click 'Contact' to contact owner ",
-            nav: "/contact",
-          })
-        : localStorage.getItem("access-token")
-        ? setPopUpInfo({
-            show: false,
-            title: "Click 'Contact' to contact owner ",
-            nav: "/contact/",
-          })
-        : setPopUpInfo({
-            show: false,
-            title: "Message",
-            msg: "You are not logged in to see property owner details",
-            nav: "/owner/login",
-          });
-    }
-  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  //  let contact = () => {
-  // navigate("/contact")
-  //   }
 
   const amenityIcons = {
     wifi: { icon: "fas fa-wifi", label: "Wifi" },
@@ -114,6 +170,15 @@ useEffect(() => {
     return <div className="text-center my-5">Property not found.</div>;
   }
 
+  const formatToIndianUnit = (amount) => {
+    if (amount >= 10000000) return (amount / 10000000).toFixed(2) + " Cr";
+    if (amount >= 100000) return (amount / 100000).toFixed(2) + " L";
+    return "₹ " + amount.toFixed(2);
+  };
+
+  const isLoggedIn =
+    localStorage.getItem("owner-token") || localStorage.getItem("access-token");
+
   return (
     <>
       <Slider data={<h1 className="text-white">Details</h1>} />
@@ -125,8 +190,15 @@ useEffect(() => {
             <div className="card p-3 shadow-sm h-100">
               <h3 className="mb-1">{property.title}</h3>
               <h5 className="text-success">
-                ₹ {property.rent ? property.rent.toFixed(2) : ""}
+                Rent: {property.rent ? formatToIndianUnit(property.rent) : ""}
               </h5>
+              <h5 className="text-success">
+                Advance:{" "}
+                {property.advance_money
+                  ? formatToIndianUnit(property.advance_money)
+                  : ""}
+              </h5>
+
               <p className="text-muted">
                 <i className="fa fa-map-marker me-2" aria-hidden="true"></i>
                 {property.address}
@@ -139,7 +211,7 @@ useEffect(() => {
               <div className="row">
                 <div className="col-sm-6 col-12 mb-3">
                   <img
-                    src={property.image || "/assets/images/img_4.jpg"}
+                    src={`http://localhost:3000/upload_images/${property.image}`}
                     className="img-fluid rounded"
                     alt="Property"
                     style={{
@@ -178,53 +250,60 @@ useEffect(() => {
           <div className="col-lg-4 col-md-5 col-12 mb-4">
             <div className="card p-3 shadow-sm h-100">
               <h4>Owner Contact</h4>
+              <hr />
               <p>
-                <b>Name:</b>{" "}
-                {localStorage.getItem("owner-token")
-                  ? ownerName
-                  : localStorage.getItem("access-token")
-                  ? ownerName
-                  : "Login to view"}
+                <b>Name:</b> {isLoggedIn ? ownerName : "Login to view"}
               </p>
               <p>
-                <b>Contact:</b>{" "}
-                {localStorage.getItem("owner-token")
-                  ? `+91 ${ownerNum}`
-                  : localStorage.getItem("access-token")
-                  ? `+91 ${ownerNum}`
-                  : "Login to view"}
+                <b>Contact:</b>
+                {isLoggedIn ? `+91 ${ownerNum}` : "Login to view"}
               </p>
               <p>
-                <b>Email:</b>{" "}
-                {localStorage.getItem("owner-token")
-                  ? email
-                  : localStorage.getItem("access-token")
-                  ? email
-                  : "Login to view"}
+                <b>Email:</b> {isLoggedIn ? email : "Login to view"}
               </p>
-              
-          {localStorage.getItem("owner-token") ? (
-            <button
-              onClick={() => setPopUpInfo({ ...popUpInfo, show: true })}
-              className="btn  btn-custom btn-rounded rounded-5 text-light col-md-3 py-3 mt-3 btn-sm"
-            >
-              Message
-            </button>
-          ) : localStorage.getItem("access-token") ? (
-            <button
-              onClick={() => setPopUpInfo({ ...popUpInfo, show: true })}
-              className="btn  btn-custom btn-rounded rounded-5 text-light col-md-3 py-3 mt-3"
-            >
-              Message
-            </button>
-          ) : (
-            <button
-              onClick={() => setPopUpInfo({ ...popUpInfo, show: true })}
-              className="btn btn-custom text-light rounded-5 py-2 px-2 mt-3  btn-hover"
-            >
-              Contact
-            </button>
-          )}
+              <p>
+                <b>Advance Booking Amount:</b>
+                {isLoggedIn ? `₹ ${advance_money}` : "Login to view"}
+              </p>
+
+              {localStorage.getItem("owner-token") ? (
+                <>
+                  <button
+                    onClick={handlePayment}
+                    className="btn  btn-custom btn-rounded rounded-5 text-light col-md-3 py-3 mt-3 btn-sm"
+                  >
+                    Message
+                  </button>
+                  <button
+                    onClick={() => setPopUpInfo({ ...popUpInfo, show: true })}
+                    className="btn  btn-custom btn-rounded rounded-5 text-light col-md-3 py-3 mt-3"
+                  >
+                    Pay
+                  </button>
+                </>
+              ) : localStorage.getItem("access-token") ? (
+                <div className="d-flex justify-content-around">
+                  <button
+                    onClick={() => setPopUpInfo({ ...popUpInfo, show: true })}
+                    className="btn  btn-custom btn-rounded rounded-5 text-light col-md-3 py-3 mt-3"
+                  >
+                    Message
+                  </button>
+                  <button
+                    onClick={handlePayment}
+                    className="btn btn-custom btn-rounded rounded-5 text-light col-md-3 py-3 mt-3"
+                  >
+                    Pay
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setPopUpInfo({ ...popUpInfo, show: true })}
+                  className="btn btn-custom text-light rounded-5 py-2 px-2 mt-3  btn-hover"
+                >
+                  Contact
+                </button>
+              )}
             </div>
           </div>
           <DetailsModal

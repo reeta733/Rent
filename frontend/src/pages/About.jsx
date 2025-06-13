@@ -1,72 +1,251 @@
-import React from 'react';
-import Slider from '../component/Slider';
+import React from "react";
+import Slider from "../component/Slider";
+import TestimonialCarousel from "../component/TestimonialCarousel";
 
 const About = () => {
   return (
     <>
-     <Slider data={<h1 className="text-white">About</h1>} />
-    <div className="container py-5">
-      <h1 className="text-center mb-4">About Us</h1>
-      <div className="row">
-        {/* About Section */}
-        <div className="col-md-6">
-          <h2 className="fw-bold">Who We Are</h2>
-          <p>
-            Welcome to Rent, your trusted platform for finding and renting properties. 
-            We are dedicated to connecting property owners with seekers, making the process 
-            seamless and efficient. Our mission is to simplify property rentals and provide 
-            a user-friendly experience for everyone.
-          </p>
-        </div>
-
-        {/* Image Section */}
-        <div className="col-md-6">
-          <img
-
-            src="/assets/images/img_8.jpg"
-            alt="About Us"
-            className="img-fluid rounded shadow"
-            style={{ height: "200px", objectFit: "cover" }}
-          />
-        </div>
-      </div>
-
-      <div className="row mt-5">
-        {/* Our Mission */}
-        <div className="col-md-6">
-          <h2 className="fw-bold">Our Mission</h2>
-          <p>
-            Our mission is to revolutionize the rental market by providing a platform that 
-            is easy to use, transparent, and reliable. We aim to empower property owners 
-            and seekers with the tools they need to make informed decisions.
-          </p>
-        </div>
-
-        {/* Our Vision */}
-        <div className="col-md-6">
-          <h2 className="fw-bold">Our Vision</h2>
-          <p>
-            We envision a world where finding a rental property is as simple as a few clicks. 
-            By leveraging technology and innovation, we strive to create a community where 
-            trust and convenience are at the forefront of every interaction.
-          </p>
+      <Slider data={<h1 className="text-white">About</h1>} />
+      <div className="section">
+        <div className="container">
+          <div className="row text-left mb-5">
+            <div className="col-12">
+              <h2 className="font-weight-bold heading text-dark mb-4">
+                About Us
+              </h2>
+            </div>
+            <div className="col-lg-6">
+              <p className="text-black-50">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
+                enim pariatur similique debitis vel nisi qui reprehenderit
+                totam? Quod maiores.
+              </p>
+              <p className="text-black-50">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+                saepe, explicabo nihil. Est, autem error cumque ipsum
+                repellendus veniam sed blanditiis unde ullam maxime veritatis
+                perferendis cupiditate, at non esse!
+              </p>
+              <p className="text-black-50">
+                Enim, nisi labore exercitationem facere cupiditate nobis quod
+                autem veritatis quis minima expedita. Cumque odio illo iusto
+                reiciendis, labore impedit omnis, nihil aut atque, facilis
+                necessitatibus asperiores porro qui nam.
+              </p>
+            </div>
+            <div className="col-lg-6">
+              <p className="text-black-50">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+                saepe, explicabo nihil. Est, autem error cumque ipsum
+                repellendus veniam sed blanditiis unde ullam maxime veritatis
+                perferendis cupiditate, at non esse!
+              </p>
+              <p className="text-black-50">
+                Enim, nisi labore exercitationem facere cupiditate nobis quod
+                autem veritatis quis minima expedita. Cumque odio illo iusto
+                reiciendis, labore impedit omnis, nihil aut atque, facilis
+                necessitatibus asperiores porro qui nam.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="row mt-5">
-        {/* Contact Information */}
-        <div className="col-md-12 text-center">
-          <h2 className="fw-bold">Get in Touch</h2>
-          <p>
-            Have questions or need assistance? Feel free to reach out to us at:
-          </p>
-          <p>
-            <strong>Email:</strong> support@rent.com <br />
-            <strong>Phone:</strong> +1 234 567 890
-          </p>
+      <div className="section pt-0">
+        <div className="container">
+          <div className="row justify-content-between mb-5">
+            <div className="col-lg-7 mb-5 mb-lg-0 order-lg-2">
+              <div className="img-about dots">
+                <img
+                  src="/assets/images/hero_bg_3.jpg"
+                  alt="Image"
+                  className="img-fluid"
+                />
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="d-flex feature-h">
+                <span className="wrap-icon me-3">
+                  <span className="icon-home2"></span>
+                </span>
+                <div className="feature-text">
+                  <h3 className="heading">Quality properties</h3>
+                  <p className="text-black-50">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nostrum iste.
+                  </p>
+                </div>
+              </div>
+
+              <div className="d-flex feature-h">
+                <span className="wrap-icon me-3">
+                  <span className="icon-person"></span>
+                </span>
+                <div className="feature-text">
+                  <h3 className="heading">Top rated agents</h3>
+                  <p className="text-black-50">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nostrum iste.
+                  </p>
+                </div>
+              </div>
+
+              <div className="d-flex feature-h">
+                <span className="wrap-icon me-3">
+                  <span className="icon-security"></span>
+                </span>
+                <div className="feature-text">
+                  <h3 className="heading">Easy and safe</h3>
+                  <p className="text-black-50">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nostrum iste.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
+      <div className="section pt-0">
+        <div className="container">
+          <div className="row justify-content-between mb-5">
+            <div className="col-lg-7 mb-5 mb-lg-0">
+              <div className="img-about dots">
+                <img
+                  src="/assets/images/hero_bg_2.jpg"
+                  alt="Image"
+                  className="img-fluid"
+                />
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="d-flex feature-h">
+                <span className="wrap-icon me-3">
+                  <span className="icon-home2"></span>
+                </span>
+                <div className="feature-text">
+                  <h3 className="heading">Quality properties</h3>
+                  <p className="text-black-50">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nostrum iste.
+                  </p>
+                </div>
+              </div>
+
+              <div className="d-flex feature-h">
+                <span className="wrap-icon me-3">
+                  <span className="icon-person"></span>
+                </span>
+                <div className="feature-text">
+                  <h3 className="heading">Top rated agents</h3>
+                  <p className="text-black-50">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nostrum iste.
+                  </p>
+                </div>
+              </div>
+
+              <div className="d-flex feature-h">
+                <span className="wrap-icon me-3">
+                  <span className="icon-security"></span>
+                </span>
+                <div className="feature-text">
+                  <h3 className="heading">Easy and safe</h3>
+                  <p className="text-black-50">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nostrum iste.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="section">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4">
+              <img
+                src="/assets/images/img_1.jpg"
+                alt="Image"
+                className="img-fluid"
+              />
+            </div>
+            <div className="col-md-4 mt-lg-5">
+              <img
+                src="/assets/images/img_3.jpg"
+                alt="Image"
+                className="img-fluid"
+              />
+            </div>
+            <div className="col-md-4">
+              <img
+                src="/assets/images/img_2.jpg"
+                alt="Image"
+                className="img-fluid"
+              />
+            </div>
+          </div>
+          <div className="row section-counter mt-5">
+            <div
+              className="col-6 col-sm-6 col-md-6 col-lg-3"
+              // data-aos="fade-up"
+              // data-aos-delay="300"
+            >
+              <div className="counter-wrap mb-5 mb-lg-0">
+                <span className="number">
+                  <span className="countup text-dark">2917</span>
+                </span>
+                <span className="caption text-black-50">
+                  # of Buy Properties
+                </span>
+              </div>
+            </div>
+            <div
+              className="col-6 col-sm-6 col-md-6 col-lg-3"
+              // data-aos="fade-up"
+              // data-aos-delay="400"
+            >
+              <div className="counter-wrap mb-5 mb-lg-0">
+                <span className="number">
+                  <span className="countup text-dark">3918</span>
+                </span>
+                <span className="caption text-black-50">
+                  # of Sell Properties
+                </span>
+              </div>
+            </div>
+            <div
+              className="col-6 col-sm-6 col-md-6 col-lg-3"
+              // data-aos="fade-up"
+              // data-aos-delay="500"
+            >
+              <div className="counter-wrap mb-5 mb-lg-0">
+                <span className="number">
+                  <span className="countup text-dark">38928</span>
+                </span>
+                <span className="caption text-black-50">
+                  # of All Properties
+                </span>
+              </div>
+            </div>
+            <div
+              className="col-6 col-sm-6 col-md-6 col-lg-3"
+              // data-aos="fade-up"
+              // data-aos-delay="600"
+            >
+              <div className="counter-wrap mb-5 mb-lg-0">
+                <span className="number">
+                  <span className="countup text-dark">1291</span>
+                </span>
+                <span className="caption text-black-50"># of Agents</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <TestimonialCarousel />
     </>
   );
 };

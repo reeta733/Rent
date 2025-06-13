@@ -8,7 +8,11 @@ let OwnerSchema = mongoose.Schema({
     state: String,
     city: String,
     password: String,
-    
+    status: {
+        type: Number,
+        default: 1
+    }
+
 }, {timestamps:true})
 
 let Owner = mongoose.model("owner", OwnerSchema);

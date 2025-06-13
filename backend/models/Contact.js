@@ -7,15 +7,12 @@ const ContactSchema = new mongoose.Schema(
     message: String,
     oid: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Owner",
+      ref: "owner",
     },
-    // seeker_id: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Seeker",
-    // },
+
     pid: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Property",
+      ref: "property",
     },
   },
   { timestamps: true }

@@ -14,6 +14,7 @@ let SaveSeeker = async(req, res)=>{
     req.body.password = sha1(req.body.password);
     
     let result = await Seeker.create(req.body);
+    // let seeker_id = await Seeker.find()
     res.send({success: true, result});
 }
 let UpdateSeeker = async(req, res)=>{
