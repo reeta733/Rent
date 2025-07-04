@@ -18,7 +18,11 @@ import PaymentConf from "./Common/PaymentConf";
 import EditProfile from "./Seekers/EditProfile";
 import EditPassword from "./Seekers/EditPassword";
 import ForgotPass from "./Seekers/ForgotPass";
-
+import PaymentConfirm from "./Seekers/PaymetConfirm";
+import OwnerEditProfile from "./Owner/OwnerEditProfile";
+import OwnerEditPassword from "./Owner/OwnerEditPassword";
+import OwnerProfile from "./Owner/Profile";
+import ForgotPassword from "./Owner/ForgotPassword";
 export {
   Home,
   About,
@@ -39,6 +43,10 @@ export {
   PaymentConf,
   EditProfile,
   EditPassword,
-  ForgotPass
-
+  ForgotPass,
+  PaymentConfirm,
+  OwnerEditProfile,
+  OwnerEditPassword,
+  OwnerProfile,
+  ForgotPassword
 };

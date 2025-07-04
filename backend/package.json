@@ -27,5 +27,14 @@
     "sha1": "^1.1.1",
     "soket.io": "^0.0.1-security"
   },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reeta733/backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/reeta733/backend/issues"
+  },
+  "homepage": "https://github.com/reeta733/backend#readme",
   "description": ""
 }

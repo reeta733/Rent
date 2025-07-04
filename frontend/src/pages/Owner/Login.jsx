@@ -82,11 +82,10 @@ const Login = () => {
                     <input
                       type="email"
                       id="email"
-                      className={`form-control ${
-                        loginFrm.errors.email && loginFrm.touched.email
+                      className={`form-control ${loginFrm.errors.email && loginFrm.touched.email
                           ? "is-invalid"
                           : ""
-                      }`}
+                        }`}
                       placeholder="Enter email"
                       value={loginFrm.values.email}
                       onChange={loginFrm.handleChange}
@@ -105,11 +104,10 @@ const Login = () => {
                       <input
                         type={showPassword ? "text" : "password"}
                         id="password"
-                        className={`form-control ${
-                          loginFrm.errors.password && loginFrm.touched.password
+                        className={`form-control ${loginFrm.errors.password && loginFrm.touched.password
                             ? "is-invalid"
                             : ""
-                        }`}
+                          }`}
                         placeholder="Enter password"
                         value={loginFrm.values.password}
                         onChange={loginFrm.handleChange}
@@ -152,7 +150,7 @@ const Login = () => {
                   {errMsg && <p className="text-danger mt-2">{errMsg}</p>}
 
                   <p className="forgot-password text-right mt-2">
-                    Forgot <NavLink to="/forgot-password">password?</NavLink>
+                    Forgot <NavLink to="/owner/forgot-password">password?</NavLink>
                   </p>
                 </form>
               </div>

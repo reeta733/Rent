@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -7,7 +8,7 @@ function DetailsModal(props) {
   // console.log(props);return;
 
   // let detail = props
-  console.log(props);
+  // console.log(props);
 
 
   let navigate = useNavigate();

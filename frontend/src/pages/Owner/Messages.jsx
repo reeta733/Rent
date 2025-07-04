@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import OwnerSideBar from '../../component/OwnerSideBar';
-// import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const Messages = () => {
   const [allMsg, setAllMsg] = useState([]);
-//   const { id } = useParams();
+  const { oid, pid } = useParams();
+  console.log("Owner ID:", oid);
+  console.log("Property ID:", pid);
 
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/contact`)
       .then((response) => {
-        setAllMsg(response.data);
-        console.log(response.data);
+        const filteredMessages = response.data.filter(msg =>
+          msg?.oid?._id === oid && msg?.pid?._id === pid
+        );
+        setAllMsg(filteredMessages);
       })
       .catch((err) => {
         console.error("Failed to fetch messages:", err);
       });
-  }, []);
+  }, [oid, pid]);
+
 
   return (
     <div className="container my-4" style={{ minHeight: "750px", paddingTop: "120px" }}>
       <div className="row">
         <div className="col-md-3">
-        <OwnerSideBar />
+          <OwnerSideBar />
         </div>
         <div className="col-md-8 offset-md-1">
           <h4>My Messages</h4>
@@ -39,20 +44,19 @@ const Messages = () => {
               </tr>
             </thead>
             <tbody>
-              {allMsg.length === 0 ? (
+              {Array.isArray(allMsg) && allMsg.length === 0 ? (
                 <tr>
-                  <td colSpan="5" className="text-center">No messages found.</td>
+                  <td colSpan="6" className="text-center">No messages found.</td>
                 </tr>
               ) : (
-                allMsg.map((item, index) => (
+                Array.isArray(allMsg) && allMsg.map((item, index) => (
                   <tr key={item._id || index}>
                     <td>{index + 1}</td>
-                    <td>{item ? item.username : ''}</td>
-                    <td>{item ? item.email : ''}</td>
-                    {/* <td>{item.seeker_id ? item.seeker_id.contact : ''}</td> */}
-                    <td>{item.message}</td>
-                    <td>{item.pid.title}</td>
-                    <td>{item.pid.address}</td>
+                    <td>{item?.oid?.name || ''}</td>
+                    <td>{item?.email || ''}</td>
+                    <td>{item?.message || ''}</td>
+                    <td>{item?.oid?.details || ''}</td>
+                    <td>{item?.pid?.address || ''}</td>
                   </tr>
                 ))
               )}

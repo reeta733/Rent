@@ -7,6 +7,7 @@ import Agent from './component/Agent'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RealEstateAgent from './component/RealEstateAgent'
 import Services from './pages/Services'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = () => {
